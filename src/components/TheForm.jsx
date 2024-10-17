@@ -5,12 +5,7 @@ const FormField = ({placeResult}) => {
     const [userName, setUserName] = useState({
         theBoi: ''
     })
-    
-    const [users, setUsers] = useState(['PrincessAspen']);
 
-  const placeResult = (newUsers) => {
-    setUsers((prevUsers => [...prevUsers, newUsers]));
-  }
 
     //Make the form submit
     const handleSubmit = (event) => {
