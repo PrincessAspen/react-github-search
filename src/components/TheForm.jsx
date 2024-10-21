@@ -1,53 +1,45 @@
-import {useState} from 'react'
+import { useState } from 'react';
+import styles from './TheForm.module.css';  // Import the CSS module
 
-//Construct the form
-const FormField = ({placeResult}) => {
-    const [userName, setUserName] = useState({
-        theBoi: ''
-    })
+const FormField = ({ placeResult }) => {
+  const [userName, setUserName] = useState({ theBoi: '' });
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    //Make the form submit
-    const handleSubmit = (event) => {
-        event.preventDefault();
-
-        if(!userName.theBoi) {
-            alert('No user entered');
-            return
-        }
-
-        placeResult(userName.theBoi);
-
-        setUserName({
-            theBoi: ''
-        })
+    if (!userName.theBoi) {
+      alert('No user entered');
+      return;
     }
 
+    placeResult(userName.theBoi);
+    setUserName({ theBoi: '' });
+  };
 
-    //Standard handleChange
-    const handleChange = (event) => {
-        const {name, value} = event.target;
-        setUserName((currentState) => ({
-            ...currentState,
-            [name]: value,
-        }));
-    }
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setUserName((currentState) => ({
+      ...currentState,
+      [name]: value,
+    }));
+  };
 
-    //Return the html so the app can use it
-    return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                <input 
-                type="text" 
-                name="theBoi" 
-                onChange = {handleChange} 
-                value={userName.theBoi}
-                placeholder="Enter username"/>
-            </label>
-            <br/>
-            <button type="submit">Submit</button>
-        </form>
-    )
+  return (
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <label className={styles.label}>
+        <input
+          className={styles.input}
+          type="text"
+          name="theBoi"
+          onChange={handleChange}
+          value={userName.theBoi}
+          placeholder="Enter username"
+        />
+      </label>
+      <br />
+      <button className={styles.button} type="submit">Submit</button>
+    </form>
+  );
 };
 
 export default FormField;
